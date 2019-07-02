@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改书本信息</title>
+</head>
+<body>
+
+<h1>输入所要修改的内容</h1>
+
+<form action="/modbook/" method="post">
+
+    <p>编号<input type="text" name="id" placeholder="输入所要修改图书的编号" AUTOCOMPLETE="off"></p>
+    <p>书名<input type="text" name="bookname"></p>
+    <p>ISBN<input type="text" name="ISBN"></p>
+    <p>作者<input type="text" name="author"></p>
+    <p>出版社<input type="text" name="publisher"></p>
+    <p>馆藏数量<input type="text" name="booknum"></p>
+    <p>馆藏地址<input type="text" name="address"></p>
+    <p><input type="submit" value="提交"></p>
+
+</form>
+<hr>
+
+<h1>书本信息展示</h1>
+
+<table border="1">
+
+    <tr>
+        <td>编号</td>
+        <td>书名</td>
+        <td>作者</td>
+        <td>ISBN</td>
+        <td>出版社</td>
+        <td>馆藏数量</td>
+        <td>馆藏地址</td>
+    </tr>
+    {% for i in book_list %}
+
+        <tr>
+            <td>{{ i.id }}</td>
+            <td>{{ i.bookname }}</td>
+            <td>{{ i.author }}</td>
+            <td>{{ i.ISBN }}</td>
+            <td>{{ i.publisher }}</td>
+            <td>{{ i.booknum }}</td>
+            <td>{{ i.address }}</td>
+        </tr>
+
+    {% endfor %}
+
+</table>
+</body>
+</html>

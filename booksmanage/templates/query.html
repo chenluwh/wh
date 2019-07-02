@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图书查询</title>
+</head>
+<body>
+<h1>输入查询条件</h1>
+
+<form action="/query/" method="get">
+
+    <p><input type="text" name="bookname" placeholder="请输入书名" AUTOCOMPLETE="off"></p>
+    <p><input type="text" name="author" placeholder="请输入作者" AUTOCOMPLETE="off"></p>
+    <p><input type="submit" value="提交"></p>
+
+</form>
+
+<hr>
+
+<h1>查询结果展示</h1>
+
+<table border="1">
+
+    <tr>
+        <td>编号</td>
+        <td>书名</td>
+        <td>ISBN</td>
+        <td>出版社</td>
+        <td>馆藏数量</td>
+        <td>馆藏地址</td>
+    </tr>
+    {% for i in book_list %}
+
+        <tr>
+            <td>{{ i.id }}</td>
+            <td>{{ i.bookname }}</td>
+            <td>{{ i.ISBN }}</td>
+            <td>{{ i.publisher }}</td>
+            <td>{{ i.booknum }}</td>
+            <td>{{ i.address }}</td>
+        </tr>
+
+    {% endfor %}
+
+</table>
+</body>
+</html>
