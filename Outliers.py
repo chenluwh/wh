@@ -59,7 +59,7 @@ class Outliers:
                 _inliers = data.iloc[_inliers_index, :]
             return _inliers, _inliers_index, _outliers, factor
 
-    def box(data, whis=None):
+    def box(data, whis=None, plot=True):
         predict = data
         predict = pd.DataFrame(predict)
         if not(np.shape(predict)[1] == 1):
@@ -72,7 +72,11 @@ class Outliers:
                               vert=True,  # 是否垂直
                               whis=whis,  # 确定胡须超出第一和第三四分位数的距离，距离为whis*IQR
                               )  # 绘制箱线图
-            plt.show()
+            # 检查plot参数，是否有需要显示箱线图
+            if plot is True:
+                plt.show()
+            else:
+                pass
             _outliers = box['fliers'][0].get_ydata()  # 获取异常值
             # 获取异常数据索引
             _outliers_index = []
@@ -99,3 +103,16 @@ class Outliers:
                 _outliers = data.iloc[_outliers_index]
                 _inliers = data.iloc[_inliers_index]
             return _inliers, _inliers_index, _outliers
+
+
+# 测试箱线图封装函数对数据的兼容性
+np.random.seed(42)
+x1 = 2 * np.random.randn(100, 1)
+x2 = 4 * np.random.randn(100, 1)
+data = np.r_[x1, x2]  # 输入数据为np.ndarray类型
+# data = np.r_[x1, x2].tolist()  # 输入数据为list类型
+# data = pd.DataFrame(data)  # 输入数据为pd.DataFrame类型
+inliers, inliers_index, outliers = Outliers.box(data, 1.0, True)
+print(inliers)
+print(inliers_index)
+print(outliers)
