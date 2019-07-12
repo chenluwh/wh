@@ -103,16 +103,3 @@ class Outliers:
                 _outliers = data.iloc[_outliers_index]
                 _inliers = data.iloc[_inliers_index]
             return _inliers, _inliers_index, _outliers
-
-
-# 测试箱线图封装函数对数据的兼容性
-np.random.seed(42)
-x1 = 2 * np.random.randn(100, 1)
-x2 = 4 * np.random.randn(100, 1)
-data = np.r_[x1, x2]  # 输入数据为np.ndarray类型
-# data = np.r_[x1, x2].tolist()  # 输入数据为list类型
-# data = pd.DataFrame(data)  # 输入数据为pd.DataFrame类型
-inliers, inliers_index, outliers = Outliers.box(data, 1.0, True)
-print(inliers)
-print(inliers_index)
-print(outliers)
