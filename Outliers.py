@@ -68,7 +68,7 @@ class Outliers:
         else:
             plt.rcParams['font.sans-serif'] = ['SimHei']  # 用来正常显示中文标签
             plt.rcParams['axes.unicode_minus'] = False  # 用来正常显示负号
-            box = plt.boxplot(x=predict[0],  # 传入的数据
+            box = plt.boxplot(x=predict.values,  # 传入的数据
                               notch=False,  # 是否产生一个缺口盒子图，否则生成矩形箱图
                               vert=True,  # 是否垂直
                               whis=whis,  # 确定胡须超出第一和第三四分位数的距离，距离为whis*IQR
@@ -82,7 +82,7 @@ class Outliers:
             # 获取异常数据索引
             _outliers_index = []
             for j in range(0, len(_outliers)):
-                index = predict[predict[0] == _outliers[j]].index.tolist()  # 获取索引并转成list类型
+                index = predict[predict.values == _outliers[j]].index.tolist()  # 获取索引并转成list类型
                 _outliers_index.append(index[0])
             # 获取正常值索引
             _inliers_index = []
