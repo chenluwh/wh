@@ -287,7 +287,6 @@ class Outliers:
                 # 如果簇内点数小于minpoint，则该簇为离群点簇
                 if len(clus[i]) < minpoint:
                     outliers_clus_index.append(i)
-                # 若簇内点数大于2，则计算簇心处的局部密度
                 else:
                     pass
             inliers_index = []
